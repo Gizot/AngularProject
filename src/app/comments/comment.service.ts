@@ -18,4 +18,8 @@ export class CommentService {
   deleteComment($event: number) {
     this.comments = this.comments.filter ((comment) => comment.commentId !==$event);
   }
+
+  addComment(comment: Comment ) {
+    this.comments.push(comment);
+  }
 }
