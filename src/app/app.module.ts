@@ -8,7 +8,7 @@ import { ButtonComponent } from './button/button.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostsModule } from './posts/posts.module';
 import { CategoryModule } from './category/category.module';
-
+import { CommentsModule } from './comments/comments.module';
 
 
 @NgModule({
