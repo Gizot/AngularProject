@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
+import { PostService } from 'src/app/posts/post.service';
+import { CommentService } from 'src/app/comments/comment.service';
 
 
 
@@ -21,19 +23,36 @@ export class UserListComponent {
   userId: number=0;
 
 
-  constructor(private userService: UserService) {
-    this.userService.setUsers();
-    this.users = this.userService.getUsers();
+  constructor(private userService: UserService, private postService: PostService, private commentService: CommentService) {
+    if (this.userService.getUsers().length === 0)
+      this.userService.setUsers();
+    else
+      this.users = this.userService.getUsers();
+    if (this.postService.getPosts().length === 0)
+      this.postService.setPosts();
+    if (this.commentService.getComments().length === 0)
+      this.commentService.setComments();
   }
 
   //son kullanıcı kalması durumunda hata vermesini sağladık.
   handleDeleteClick($event: number) {
     if(this.userService.userCount() === 1)
       alert("You can not delete last users.")
+    else if (this.checkPostsAndComments($event) === true)
+      alert("You cannot delete a user with post or comment");
     else {
       this.userService.deleteUser($event);
       this.users = this.userService.getUsers();
     }
+  }
+
+  checkPostsAndComments(id: number): boolean {
+    if (this.postService.getPosts().filter((post) => post.userId === id).length !== 0)
+      return true;
+    else if (this.commentService.getComments().filter((comment) => comment.userId === id).length !== 0)
+      return true;
+    else
+      return false;
   }
 
 

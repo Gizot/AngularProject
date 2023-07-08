@@ -4,6 +4,8 @@ import { PostService } from '../post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/user/user.service';
 import { User } from 'src/app/user/user';
+import { Category } from 'src/app/category/category';
+import { CategoryService } from 'src/app/category/category.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -23,13 +25,24 @@ export class PostDetailComponent {
   isPublished: false
  };
  users: User[] = [];
+ categories: Category[] = [];
  editMode: Boolean = false;
 
- constructor(private postService: PostService, private router: Router, private activatedRoute: ActivatedRoute,
-  private userService: UserService) {
-    this.userService.setUsers();
-    this.users = this.userService.getUsers();
+ constructor(private postService: PostService,
+  private router: Router,
+  private activatedRoute: ActivatedRoute,
+  private userService: UserService,
+  private categoryService: CategoryService) {
+    if (this.userService.getUsers().length === 0)
+      this.userService.setUsers();
+    else
+      this.users = this.userService.getUsers();
+    if (this.categoryService.getCategories().length === 0)
+      this.categoryService.setCategories();
+    else
+      this.categories = this.categoryService.getCategories();
  }
+
  ngOnInit() {
   this.activatedRoute.params.subscribe(params => {
     this.posts = this.postService.getPosts();

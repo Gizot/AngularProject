@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent {
-  
+
   //form içerisinde kullanılmak üzere yeni user objesi oluşturarak tipleri belirledik.
   user: User = {
     userId: 0,
@@ -22,7 +22,8 @@ export class UserAddComponent {
 
 
   constructor(private userService: UserService, private router: Router) {
-    this.userService.setUsers();
+    if(this.userService.getUsers().length === 0)
+      this.userService.setUsers();
 
   }
 

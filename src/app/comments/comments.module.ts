@@ -19,7 +19,7 @@ import { AppModule } from '../app.module';
     CommonModule,
     FormsModule,
     RouterModule,
-    AppModule,
+    AppModule
   ]
 })
 export class CommentsModule { }

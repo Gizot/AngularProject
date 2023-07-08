@@ -11,6 +11,7 @@ import { CategoryModule } from './category/category.module';
 import { CommentsModule } from './comments/comments.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,8 +20,7 @@ import { CommentsModule } from './comments/comments.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
-   
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

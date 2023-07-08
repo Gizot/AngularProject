@@ -4,5 +4,5 @@ export interface Comment {
     userId: number,
     comment: string,
     creationDate: string,
-    isConfirmed: boolean,
+    isConfirmed: boolean
 };

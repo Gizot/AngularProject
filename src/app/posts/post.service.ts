@@ -31,7 +31,6 @@ export class PostService {
   }
 
   updatePost(updatedPost: Post) {
-    console.log(updatedPost.userId);
     this.posts = this.posts.map(post => {
       if (post.postId === updatedPost.postId)
         post = updatedPost;

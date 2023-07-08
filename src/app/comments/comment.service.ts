@@ -12,14 +12,16 @@ export class CommentService {
   getComments(): Comment[] {
     return this.comments;
   }
+
   setComments(): void {
     this.comments = defaultcomments;
   }
+
   deleteComment($event: number) {
-    this.comments = this.comments.filter ((comment) => comment.commentId !==$event);
+    this.comments = this.comments.filter((comment) => comment.commentId !== $event);
   }
 
-  addComment(comment: Comment ) {
+  addComment(comment: Comment) {
     this.comments.push(comment);
   }
 }

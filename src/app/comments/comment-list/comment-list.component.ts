@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Comment } from '../comment';
 import { CommentService } from '../comment.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-comment-list',
   templateUrl: './comment-list.component.html',
@@ -13,19 +14,18 @@ export class CommentListComponent {
   currentPage = 1;
   itemsPerPage = 10;
 
-  constructor(private commentService: CommentService, private router: Router,) {
-    if(this.commentService.getComments().length === 0)
-    this.commentService.setComments();
-    this.comments =this.commentService.getComments();
+  constructor(private commentService: CommentService,
+    private router: Router){
+    if (this.commentService.getComments().length === 0)
+      this.commentService.setComments();
+    this.comments = this.commentService.getComments();
   };
 
-  handleDetailClick($event: number) {
+  handleDetailClick($event: number){
     this.router.navigateByUrl(`/commentlist/${$event}`);
-    
-
   }
 
-  handleDeleteClick($event: number) {
+  handleDeleteClick($event: number){
     this.commentService.deleteComment($event);
     this.comments = this.commentService.getComments();
     this.pageChanged(this.currentPage);
@@ -63,5 +63,4 @@ export class CommentListComponent {
   get totalPages(): number {
     return Math.ceil(this.comments.length / this.itemsPerPage);
   }
-
 }

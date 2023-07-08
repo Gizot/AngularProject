@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Comment } from '../comment';
 import { CommentService } from '../comment.service';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-comment-detail',
@@ -9,18 +9,17 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
   styleUrls: ['./comment-detail.component.css']
 })
 export class CommentDetailComponent {
-  comments: Comment[] = []; 
+  comments: Comment[] = [];
   comment: Comment = {
     commentId: 0,
     postId: 0,
     userId: 0,
-    comment:"",
-    creationDate:"",
+    comment: "",
+    creationDate: "",
     isConfirmed: false
   };
 
-  constructor (private commentService: CommentService, private activatedRoute: ActivatedRoute) {
-
+  constructor(private commentService: CommentService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -30,5 +29,4 @@ export class CommentDetailComponent {
       this.comment = this.comments.find(comment => comment.commentId === Number(id))!;
       })
     }
-
 }
